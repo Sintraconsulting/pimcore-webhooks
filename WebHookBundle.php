@@ -14,4 +14,5 @@ class WebHookBundle extends AbstractPimcoreBundle {
         return $this->container->get(WebHookBundleInstaller::class);
 
     }
+    
 }

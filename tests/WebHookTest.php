@@ -27,7 +27,7 @@ class WebHookTest extends KernelTestCase {
         $data = "mydata";
         $keys = $this->webHookListener->generateSignature($data);
 
-        if(!$publicKey = \Pimcore\Model\WebsiteSetting::getByName('Public Key')){
+        if(!$publicKey = \Pimcore\Model\WebsiteSetting::getByName('WebHookPublicKey')){
             echo("No public key found");
             return;
         }

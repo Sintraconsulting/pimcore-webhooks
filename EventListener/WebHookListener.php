@@ -92,7 +92,7 @@ class WebHookListener {
                     return;
                 }
 
-                if(!$apiKey = \Pimcore\Model\WebsiteSetting::getByName('api-Key')){
+                if(!$apiKey = \Pimcore\Model\WebsiteSetting::getByName('WebHookApi-key')){
                     echo("No api-key found");
                     return;
                 }
@@ -102,10 +102,9 @@ class WebHookListener {
                     $client = HttpClient::create();
                     $url = $webHook->getURL();
                     $method = 'POST';
-                    $headers = ["pimcore" => $eventName,
-                                "api-key" => $apiKey,
-                                "signature" => base64_encode($signature["signature"]),
-                                "objectId" => $dataObject->getId()];
+                    $headers = ["pimcore-event" => $eventName,
+                                "webhook-api-key" => $apiKey,
+                                "webhook-signature" => base64_encode($signature["signature"])];
                     $response = $client->request($method, $url, ['headers' => $headers, 'body' => $jsonContent]);
                     \Pimcore\Log\Simple::log("WebHook", "Event: ".$eventName." Class: ".$entityType." Response: ".$response->getStatusCode());
                 }
@@ -116,7 +115,7 @@ class WebHookListener {
     public function generateSignature($jsonContent) {
 
         $keys = array();
-        if(!$privateKey = \Pimcore\Model\WebsiteSetting::getByName('Private Key')){
+        if(!$privateKey = \Pimcore\Model\WebsiteSetting::getByName('WebHookPrivateKey')){
             echo("No private key found");
             return $keys["success"] = false;
         }

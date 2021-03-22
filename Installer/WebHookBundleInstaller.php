@@ -21,44 +21,47 @@ class WebHookBundleInstaller extends MigrationInstaller
     }
 
     private function installKeys() {
-        $new_key_pair = openssl_pkey_new(array(
-            "private_key_bits" => 2048,
-            "private_key_type" => OPENSSL_KEYTYPE_RSA,
-        ));
-
-        openssl_pkey_export($new_key_pair, $privateKey);
-        
-        $details = openssl_pkey_get_details($new_key_pair);
-        $publicKey = $details['key'];
-        
-        if(!\Pimcore\Model\WebsiteSetting::getByName('api-key')){
+                
+        if(!\Pimcore\Model\WebsiteSetting::getByName('WebHookApi-key')){
             $settingApiKey = new \Pimcore\Model\WebsiteSetting();
-            $settingApiKey->setName("api-Key");
+            $settingApiKey->setName("WebHookApi-key");
             $settingApiKey->setType("text");
-            $settingApiKey->setData("1234567890");
+            $settingApiKey->setData(md5(random_bytes(300)));
             $settingApiKey->save();
         } else {
-            $this->outputWriter->write(sprintf('\nFound api-key\n'));
+            $this->outputWriter->write(sprintf('\nFound WebHookApi-key\n'));
         }
 
-        if(!\Pimcore\Model\WebsiteSetting::getByName('Public Key')){
+        if(\Pimcore\Model\WebsiteSetting::getByName('WebHookPublicKey') && \Pimcore\Model\WebsiteSetting::getByName('WebHookPrivateKey')){
+            $this->outputWriter->write(sprintf('\nFound public and private key\n'));
+        } else {
+            $new_key_pair = openssl_pkey_new(array(
+                "private_key_bits" => 2048,
+                "private_key_type" => OPENSSL_KEYTYPE_RSA,
+            ));
+    
+            openssl_pkey_export($new_key_pair, $privateKey);
+            
+            $details = openssl_pkey_get_details($new_key_pair);
+            $publicKey = $details['key'];
+            
+            if($settingPublicKey = \Pimcore\Model\WebsiteSetting::getByName('WebHookPublicKey')){
+                $settingPublicKey->delete();
+            }
             $settingPublicKey = new \Pimcore\Model\WebsiteSetting();
-            $settingPublicKey->setName("Public Key");
+            $settingPublicKey->setName("WebHookPublicKey");
             $settingPublicKey->setType("text");
             $settingPublicKey->setData($publicKey);
             $settingPublicKey->save();
-        } else {
-            $this->outputWriter->write(sprintf('\nFound public key\n'));
-        }
-
-        if(!\Pimcore\Model\WebsiteSetting::getByName('Private Key')) {
+            
+            if($settingPrivateKey = \Pimcore\Model\WebsiteSetting::getByName('WebHookPrivateKey')) {
+                $settingPrivateKey->delete();
+            }
             $settingPrivateKey = new \Pimcore\Model\WebsiteSetting();
-            $settingPrivateKey->setName("Private Key");
+            $settingPrivateKey->setName("WebHookPrivateKey");
             $settingPrivateKey->setType("text");
             $settingPrivateKey->setData($privateKey);
             $settingPrivateKey->save();        
-        } else {
-            $this->outputWriter->write(sprintf('\nFound private key\n'));
         }
     }
 

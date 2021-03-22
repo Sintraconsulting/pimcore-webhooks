@@ -1,1 +1,44 @@
-# TDBD
+# WebHookBundle Plugin
+
+This bundle provide an automatic sending of dataobjects to an external sites via
+ json, whenever an event occurs on a specified class.
+
+## How to Install WebHookBundle
+
+Clone the repository in the src/WebHookBundle directory in your Pimcore
+installation
+
+Enable and Install the WebHookBundle by the Pimcore Extensions Manager directly on Pimcore interface.
+
+
+## Description
+
+This bundle installs the webHook class through which it is possible to define,
+from the UI, which dataObjects to send to an external site, when a pimcore event
+ occurs on the specified dataobject.
+![](assets/ClassWebHook.png?raw=true)
+
+After installing the bundle, create a WebHook object by entering the class, the event to listen to and the url of the site to send to.
+Once the set event occurs, the json of the object is generated, and sent to the specified url.
+
+The aviable event are:
+  - preAdd
+  - postAdd
+  - postAddFailure
+  - preUpdate
+  - postUpdate
+  - postUpdateFailure
+  - deleteInfo
+  - preDelete
+  - postDelete
+  - postDeleteFailure
+  - postCopy
+  - postCsvItemExport
+
+
+To ensure the authenticity and security of the information transmitted, in the 
+header there are a randomly generated api-key, and a signature generated 
+through a pair of keys (public / private), stored in the Pimcore website setting.
+These are created automatically when the bundle is installed, but you can use your own.
+
+![](assets/WebSiteSettings.png?raw=true)
