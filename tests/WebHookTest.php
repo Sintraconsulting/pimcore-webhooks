@@ -13,7 +13,8 @@ use Pimcore\Test\KernelTestCase;
 class WebHookTest extends KernelTestCase {
 
     private $webHookListener;
-
+    private $testURL  = "https://enfen5kd4e3ot.x.pipedrea.net/"; //Set a valid url
+    
     protected function setUp(): void {
 
         self::bootKernel();
@@ -60,7 +61,7 @@ class WebHookTest extends KernelTestCase {
         $this->assertEquals(null, $this->webHookListener->onPostDelete(new DataObjectEvent($testClass, [])));
 
         foreach ($webHooks as $key => $value) {
-            $value->delete();
+            //$value->delete();
         }
     }
  
@@ -76,17 +77,25 @@ class WebHookTest extends KernelTestCase {
         return $webHooks;
     }
     
-    public function createWebHook($listenedEvent, $entityType = "TestClass", $url = "https://enfen5kd4e3ot.x.pipedream.net/") {
+    public function createWebHook($listenedEvent, $entityType = "TestClass") {
 
-        //if(!$webHook = DataObject\WebHook::getByListenedEvent($listenedEvent)) {
-            $webHook = new DataObject\WebHook(); 
-            $webHook->setKey(\Pimcore\Model\Element\Service::getValidKey("webHook-".$listenedEvent, 'object'));
-            $webHook->setParentId(1);
-            $webHook->setEntityType("$entityType");
-            $webHook->setURL($url);
-            $webHook->setListenedEvent($listenedEvent);
-            $webHook->save();
-        //}
+        $webHooks = new \Pimcore\Model\DataObject\WebHook\Listing();
+        $webHooks->setUnpublished(true);
+        $webHooks->setCondition("EntityType LIKE ?", [$entityType]);
+        $webHooks = $webHooks->load();
+
+        foreach ($webHooks as $webHook) {
+            if($webHook->getKey() == "webHook-".$listenedEvent) {
+                return $webHook;
+            }
+        }
+        $webHook = new DataObject\WebHook(); 
+        $webHook->setKey(\Pimcore\Model\Element\Service::getValidKey("webHook-".$listenedEvent, 'object'));
+        $webHook->setParentId(1);
+        $webHook->setEntityType("$entityType");
+        $webHook->setURL($this->testURL);
+        $webHook->setListenedEvent($listenedEvent);
+        $webHook->save();
         return $webHook;
     }
 

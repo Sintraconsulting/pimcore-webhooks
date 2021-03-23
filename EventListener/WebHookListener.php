@@ -65,7 +65,7 @@ class WebHookListener {
     public function handleChange(ElementEventInterface $e, $eventName) {
 
         if ($e instanceof DataObjectEvent ) {
-            $dataObject= $e->getObject();
+            $dataObject = $e->getObject();
 
             if($dataObject->getType() != "folder") {
                 $entityType = $dataObject->getClassName();
@@ -105,8 +105,13 @@ class WebHookListener {
                     $headers = ["pimcore-event" => $eventName,
                                 "webhook-api-key" => $apiKey,
                                 "webhook-signature" => base64_encode($signature["signature"])];
-                    $response = $client->request($method, $url, ['headers' => $headers, 'body' => $jsonContent]);
-                    \Pimcore\Log\Simple::log("WebHook", "Event: ".$eventName." Class: ".$entityType." Response: ".$response->getStatusCode());
+                    try {
+                        $response = $client->request($method, $url, ['headers' => $headers, 'body' => $jsonContent]);
+                        \Pimcore\Log\Simple::log("WebHook", "Event: ".$eventName." Class: ".$entityType." object Id ".$dataObject->getId()." host: ".$webHook->getURL()." Response: ".$response->getStatusCode());
+
+                    } catch (\Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface $e){
+                        \Pimcore\Log\Simple::log("WebHook", "Event: ".$eventName." Class: ".$entityType." object Id ".$dataObject->getId()." host: ".$webHook->getURL()." Response: ".$e->getMessage());
+                    }
                 }
            }
         }
