@@ -3,10 +3,7 @@
     "description": "A Pimcore's bundle for implementing webhooks",
     "license": "GPL-3.0+",
     "type": "library",
-    "require": {
-        "php": ">=7.4",
-        "another-vendor/package": "1.*"
-    },
+   
   "config": {
     "discard-changes": true
   },
@@ -21,6 +18,13 @@
   "require": {
     "pimcore/pimcore": "^6.8 || ^10.0"
   },
+    "extra": {
+        "pimcore": {
+            "bundles": [
+                "WebHookBundle\\WebHookBundle"
+            ]
+        }
+    },
   "require-dev": {
     "symfony/phpunit-bridge": "*"
   }
