@@ -19,12 +19,14 @@ After you have installed the Toolbox Bundle via composer, open pimcore backend a
 
 ## Description
 
-This bundle installs the webHook class through which it is possible to define, from the UI, which dataObjects to send to an external site, whenever a pimcore event
-occurs on the specified dataobject.
+This bundle installs the webHook class through which it is possible to define, from the UI, which dataObjects to send to an external site, whenever a pimcore event occurs on the specified dataobject.
 
-Now that the bundle is installed you can start creating your webhooks: create a folder by naming it as you like and create a webhook object in it, specifying the name of the class, the event to listen to, and the URL of the site to send the json object.
+Now that the bundle is installed you can start creating your webhooks: 
+  - create a folder by naming it as you like 
+  - create a webhook object in it, specifying the name of the class, the event to listen to, and the URL of the site to send the json object
+  - save
 
-Once the set event occurs, the json of the object is generated, and sent to the specified url. In the header it is specified which event was launched.
+Once the set event occurs, the json of the dataObject is generated, and sent to the specified url. In the header it is specified which event was launched.
 
 The aviable event are:
   - preAdd
@@ -41,7 +43,7 @@ The aviable event are:
   - postCsvItemExport
 
 
-![](assets/ClassWebHook.png?raw=true)
+![](assets/CreateWebHooks.mkv?raw=true)
 
 To ensure the authenticity and security of the information transmitted, in the 
 header there are a randomly generated api-key, and a signature generated 
