@@ -10,18 +10,21 @@ For installig WebHookBundle, the first step is to open your terminal and type:
 docker-compose exec php bash
 composer require sintra/pimcore-webhooks:dev-main
 ```
-When installation is complete, the bundle appears in the extension managers. From the UI open tool-> bundle and then enable and install.
+When downloading is complete, the bundle appears in the extension managers. From the UI open tool-> bundle and then enable and install.
+After you have installed the Toolbox Bundle via composer, open pimcore backend and go to `Tools` => `Extension`:
+- Click the green `+` Button in `Enable / Disable` row
+- Click the green `+` Button in `Install/Uninstall` row
+
 ![](assets/ExtentionManager.png?raw=true)
 
 
 ## Description
 
-This bundle installs the webHook class through which it is possible to define,
-from the UI, which dataObjects to send to an external site, when a pimcore event
- occurs on the specified dataobject.
-![](assets/ClassWebHook.png?raw=true)
+This bundle installs the webHook class through which it is possible to define, from the UI, which dataObjects to send to an external site, whenever a pimcore event
+occurs on the specified dataobject.
 
-After installing the bundle, create a WebHook object by entering the class name, the event to listen to and the url of the site to send to. 
+Now that the bundle is installed you can start creating your webhooks: create a folder by naming it as you like and create a webhook object in it, specifying the name of the class, the event to listen to, and the URL of the site to send the json object.
+
 Once the set event occurs, the json of the object is generated, and sent to the specified url. In the header it is specified which event was launched.
 
 The aviable event are:
@@ -38,6 +41,8 @@ The aviable event are:
   - postCopy
   - postCsvItemExport
 
+
+![](assets/ClassWebHook.png?raw=true)
 
 To ensure the authenticity and security of the information transmitted, in the 
 header there are a randomly generated api-key, and a signature generated 
