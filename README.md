@@ -28,7 +28,7 @@ The following video shows how this can be done in seconds.
 ![](assets/CreateWebHooks.gif?raw=true)
 Now you are ready to use the Webhok bundle!
 
-## Webook configuration
+# Webook configuration
 
 
 ## Availbale options
