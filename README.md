@@ -1,10 +1,11 @@
 # WebHookBundle Plugin
 
 This extention provide an easy way to send dataobjects to an external sites via
- json, whenever a pimcore event occurs on a specified class.
+ json, whenever a pimcore event occurs on a specified class. This bundle installs the webHook class through which it is possible to define, from the UI, which dataObjects to listen for sending data to an external website, whenever a pimcore event occurs on the specified dataobject.
 
-## How to Install WebHookBundle
+# How to Install WebHookBundle
 
+## 1. download and install the bundle from composer
 For installig WebHookBundle, the first step is to open your terminal and type:
 ```bash
 docker-compose exec php bash
@@ -17,16 +18,25 @@ After you have installed the Toolbox Bundle via composer, open pimcore backend a
 ![](assets/ExtentionManager.png?raw=true)
 
 
-## Description
+## 2. Configure the bundle
 
-This bundle installs the webHook class through which it is possible to define, from the UI, which dataObjects to send to an external site, whenever a pimcore event occurs on the specified dataobject.
+Now that the bundle is installed you can start creating your webhooks!. Follows the next stesp.
+1. create a folder called `Webhooks`. Although this is not mandatory and you can name it as you want.
+2. create a webhook object in it. u can specify the name of the class to monitor, the event to listen to, and the URL of the site to send the json object
 
-Now that the bundle is installed you can start creating your webhooks: 
-  - create a folder by naming it as you like 
-  - create a webhook object in it, specifying the name of the class, the event to listen to, and the URL of the site to send the json object
-  - save
+The following video shows how this can be done in seconds.
+![](assets/CreateWebHooks.gif?raw=true)
+Now you are ready to use the Webhok bundle!
 
-Once the set event occurs, the json of the dataObject is generated, and sent to the specified url. In the header it is specified which event was launched.
+## Webook configuration
+
+
+## Availbale options
+You can specify:
+- The class to monitor
+- The URL to send data to
+- The event to listen
+
 
 The aviable event are:
   - preAdd
@@ -42,9 +52,18 @@ The aviable event are:
   - postCopy
   - postCsvItemExport
 
+Once the event occurs, the json represtantion of you data is sent to the specified url. In the header it is specified which event was launched.
 
-![](assets/CreateWebHooks.gif?raw=true)
+Each event will trigger a request like this:
 
+- headers
+ - `x-listen-event`: contain the name of the event launched
+ - `x-apike`:
+- body: contains json data
+
+
+
+## Security settings
 To ensure the authenticity and security of the information transmitted, in the 
 header there are a randomly generated api-key, and a signature generated 
 through a pair of keys (public / private), stored in the Pimcore website setting.
