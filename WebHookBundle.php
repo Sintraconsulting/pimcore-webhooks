@@ -10,10 +10,10 @@ use WebHookBundle\Installer\WebHookBundleInstaller;
 
 class WebHookBundle extends AbstractPimcoreBundle {
 
-
+/*
     use PackageVersionTrait;
-
     const PACKAGE_NAME = 'sintra/pimcore-webhooks';
+*/
 
     public function getInstaller() {
 
@@ -24,16 +24,19 @@ class WebHookBundle extends AbstractPimcoreBundle {
     /**
      * {@inheritdoc}
      */
+/*
     protected function getComposerPackageName(): string
     {
         return self::PACKAGE_NAME;
     }
-
+*/
     /**
      * @return string
      */
+/*
     protected static function getPimcoreVersion()
     {
         return preg_replace('/[^0-9.]/', '', \Pimcore\Version::getVersion());
     }
+*/
 }

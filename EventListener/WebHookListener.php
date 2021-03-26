@@ -94,7 +94,6 @@ class WebHookListener {
 
                 if(!$apiKey = \Pimcore\Model\WebsiteSetting::getByName('WebHookApi-key')){
                     echo("No api-key found");
-                    return;
                 }
                 $apiKey = $apiKey->getData();
 

@@ -1,14 +1,17 @@
 # WebHookBundle Plugin
 
-This bundle provide an automatic sending of dataobjects to an external sites via
+This extention provide an easy way to send dataobjects to an external sites via
  json, whenever a pimcore event occurs on a specified class.
 
 ## How to Install WebHookBundle
 
-Clone the repository in the src/WebHookBundle directory in your Pimcore
-installation
-
-Enable and Install the WebHookBundle by the Pimcore Extensions Manager directly on Pimcore interface.
+For installig WebHookBundle, the first step is to open your terminal and type:
+```bash
+docker-compose exec php bash
+composer require sintra/pimcore-webhooks:dev-main
+```
+When installation is complete, the bundle appears in the extension managers. From the UI open tool-> bundle and then enable and install.
+![](assets/ExtentionManager.png?raw=true)
 
 
 ## Description
@@ -43,4 +46,5 @@ These are created automatically when the bundle is installed, but you can use yo
 
 ![](assets/WebSiteSettings.png?raw=true)
 
-To use the tests you need to specify a valid url.
+To run the tests you don't need to create any webhooks or classes, these will be
+created automatically, you just have to initialize the testURL attribute with a valid url.
