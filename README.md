@@ -10,7 +10,6 @@ For installig WebHookBundle, the first step is to open your terminal and type:
 docker-compose exec php bash
 composer require sintra/pimcore-webhooks:dev-main
 ```
-When downloading is complete, the bundle appears in the extension managers. From the UI open tool-> bundle and then enable and install.
 After you have installed the Toolbox Bundle via composer, open pimcore backend and go to `Tools` => `Extension`:
 - Click the green `+` Button in `Enable / Disable` row
 - Click the green `+` Button in `Install/Uninstall` row
