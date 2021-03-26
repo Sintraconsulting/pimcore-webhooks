@@ -43,7 +43,7 @@ The aviable event are:
   - postCsvItemExport
 
 
-![](assets/CreateWebHooks.mp4?raw=true)
+![](assets/CreateWebHooks.gif?raw=true)
 
 To ensure the authenticity and security of the information transmitted, in the 
 header there are a randomly generated api-key, and a signature generated 
