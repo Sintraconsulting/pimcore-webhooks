@@ -22,7 +22,7 @@ After you have installed the Toolbox Bundle via composer, open pimcore backend a
 
 Now that the bundle is installed you can start creating your webhooks!. Follows the next stesp.
 1. create a folder called `Webhooks`. Although this is not mandatory and you can name it as you want.
-2. create a webhook object in it. u can specify the name of the class to monitor, the event to listen to, and the URL of the site to send the json object
+2. create a webhook object in it. You can specify the name of the class to monitor, the event to listen to, and the URL of the site to send the json object
 
 The following video shows how this can be done in seconds.
 ![](assets/CreateWebHooks.gif?raw=true)
