@@ -59,7 +59,7 @@ Each event will trigger a request like this:
 - headers
  - `x-listen-event`: contain the name of the event launched
  - `x-apikey`: contain a random generated key for autentication porpouse
- - `x-signature`: contain the data created with OPENSSL_ALGO_SHA1; public key is store in website settings
+ - `x-signature`: contain the data signature created with OPENSSL_ALGO_SHA1; public key is store in website settings
 - body: contains json data
 
 
