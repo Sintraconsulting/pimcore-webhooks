@@ -57,12 +57,12 @@ Once the event occurs, the json represtantion of you data is sent to the specifi
 Each event will trigger a request like this:
 
 - headers
- - - `x-listen-event`: contain the name of the event launched
- - - `x-apikey`: contain a random generated key for autentication porpouse
- - - `x-signature`: contain the data signature created with OPENSSL_ALGO_SHA1; public key is store in website settings
+  - `x-listen-event`: contain the name of the event launched
+  - `x-apikey`: contain a random generated key for autentication porpouse
+  - `x-signature`: contain the data signature created with OPENSSL_ALGO_SHA1; public key is store in website settings
 - body contains two main parts:
- - - `dataObject`: json representation of your dataObject
- - - `argumentrs`: exception code and message throws if a failure occurs
+  - `dataObject`: json representation of your dataObject
+  - `argumentrs`: exception code and message throws if a failure occurs
 
 
 ## Security settings
