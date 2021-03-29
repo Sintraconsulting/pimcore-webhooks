@@ -82,7 +82,7 @@ class WebHookListener {
 
                 $exportData = new ExportDataObject();
                 $serializer = new Serializer([new ObjectNormalizer()], [new JsonEncoder(), new XmlEncoder()]);
-                $arrayData = $exportData->getDataForObject($dataObject);
+                $arrayData["data"] = $exportData->getDataForObject($dataObject);
                 $arrayData["arguments"] = $e->getArguments();
 
                 $jsonContent = $serializer->serialize($arrayData, 'json');
@@ -101,9 +101,9 @@ class WebHookListener {
                     $client = HttpClient::create();
                     $url = $webHook->getURL();
                     $method = 'POST';
-                    $headers = ["pimcore-event" => $eventName,
-                                "webhook-api-key" => $apiKey,
-                                "webhook-signature" => base64_encode($signature["signature"])];
+                    $headers = ["x-listen-event" => $eventName,
+                                "x-apikey" => $apiKey,
+                                "x-signature" => base64_encode($signature["signature"])];
                     try {
                         $response = $client->request($method, $url, ['headers' => $headers, 'body' => $jsonContent]);
                         \Pimcore\Log\Simple::log("WebHook", "Event: ".$eventName." Class: ".$entityType." object Id ".$dataObject->getId()." host: ".$webHook->getURL()." Response: ".$response->getStatusCode());
