@@ -35,7 +35,7 @@ jobs:
           php_extensions: xdebug
           bootstrap: vendor/autoload.php
           configuration: tests/phpunit.xml
-          args: --filter testB /tests/WebHookTest.php
+          args: --filter testB ./tests/WebHookTest.php
           
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
