@@ -1,7 +1,7 @@
 {
     "name": "sintra/pimcore-webhooks",
     "description": "A Pimcore's bundle for implementing webhooks",
-    "license": "GPL-3.0+",
+    "license": "GPL-3.0-or-later",
     "type": "pimcore-bundle",
    
   "config": {
