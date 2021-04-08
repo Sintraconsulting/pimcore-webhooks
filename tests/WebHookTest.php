@@ -23,6 +23,10 @@ class WebHookTest extends KernelTestCase {
         $this->webHookListener = new WebHookListener();
         $this->installTestClass();
     }
+    
+    public function testA() {
+        $this->assertEquals(1,1);
+    }
 
     public function testSignature() {
         $data = "mydata";
