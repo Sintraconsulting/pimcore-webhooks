@@ -36,7 +36,8 @@ jobs:
           bootstrap: vendor/autoload.php
           configuration: tests/phpunit.xml
           args: --filter testB ./tests/WebHookTest.php
-          
+      env:
+          XDEBUG_MODE: coverage
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
