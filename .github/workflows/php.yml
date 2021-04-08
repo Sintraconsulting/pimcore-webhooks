@@ -28,7 +28,10 @@ jobs:
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --ignore-platform-reqs
-
+      
+    - name: PHPUnit Tests
+      run: vendor/bin/phpunit --filter testB /src/WebHookBundle/tests/WebHookTest.php
+          
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
