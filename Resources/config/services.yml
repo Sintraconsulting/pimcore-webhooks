@@ -8,3 +8,21 @@ services:
         public: true
         arguments:    
             $bundle: "@=service('kernel').getBundle('WebHookBundle')"
+
+    WebHookBundle\EventListener\WebHookListener:
+        public: true
+        tags:
+          - { name: kernel.event_listener, event: pimcore.dataobject.preAdd, method: onPreAdd }
+          - { name: kernel.event_listener, event: pimcore.dataobject.postAdd, method: onPostAdd }
+          - { name: kernel.event_listener, event: pimcore.dataobject.postAddFailure, method: onPostAddFailure }
+          - { name: kernel.event_listener, event: pimcore.dataobject.preUpdate, method: onPreUpdate }
+          - { name: kernel.event_listener, event: pimcore.dataobject.postUpdate, method: onPostUpdate }
+          - { name: kernel.event_listener, event: pimcore.dataobject.postUpdateFailure, method: onPostUpdateFailure }
+          - { name: kernel.event_listener, event: pimcore.dataobject.deleteInfo, method: onDeleteInfo }
+          - { name: kernel.event_listener, event: pimcore.dataobject.preDelete, method: onPreDelete }
+          - { name: kernel.event_listener, event: pimcore.dataobject.postDelete, method: onPostDelete }
+          - { name: kernel.event_listener, event: pimcore.dataobject.postDeleteFailure, method: onPostDeleteFailure }
+          - { name: kernel.event_listener, event: pimcore.dataobject.postCopy, method: onPostCopy }
+          - { name: kernel.event_listener, event: pimcore.dataobject.postCsvItemExport, method: onPostCsvItemExport }
+
+        

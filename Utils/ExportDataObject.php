@@ -35,11 +35,6 @@ class ExportDataObject {
         $parent = DataObject\Service::hasInheritableParentObject($object);
         $getter = 'get' . ucfirst($key);
 
-        // Editmode optimization for lazy loaded relations (note that this is just for AbstractRelations, not for all
-        // LazyLoadingSupportInterface types. It tries to optimize fetching the data needed for the editmode without
-        // loading the entire target element.
-        // ReverseManyToManyObjectRelation should go in there anyway (regardless if it a version or not),
-        // so that the values can be loaded.
         if (
             (!$objectFromVersion && $fielddefinition instanceof AbstractRelations)
             || $fielddefinition instanceof ReverseManyToManyObjectRelation
@@ -102,13 +97,11 @@ class ExportDataObject {
                 $value = $fielddefinition->getDataForEditmode($fieldData, $object, ['objectFromVersion' => $objectFromVersion]);
             }
 
-            // following some exceptions for special data types (localizedfields, objectbricks)
+            
             if ($value && ($fieldData instanceof DataObject\Localizedfield || $fieldData instanceof DataObject\Classificationstore)) {
-                // make sure that the localized field participates in the inheritance detection process
                 $isInheritedValue = $value['inherited'];
             }
             if ($fielddefinition instanceof DataObject\ClassDefinition\Data\Objectbricks && is_array($value)) {
-                // make sure that the objectbricks participate in the inheritance detection process
                 foreach ($value as $singleBrickData) {
                     if (!empty($singleBrickData['inherited'])) {
                         $isInheritedValue = true;

@@ -13,7 +13,7 @@ use Pimcore\Test\KernelTestCase;
 class WebHookTest extends KernelTestCase {
 
     private $webHookListener;
-    private $testURL  = "https://enfen5kd4e3ot.x.pipedrea.net/"; //Set a valid url
+    private $testURL  = "https://enfen5kd4e3ot.x.pipedream.net/"; //Set a valid url
     
     protected function setUp(): void {
 
@@ -61,7 +61,7 @@ class WebHookTest extends KernelTestCase {
         $this->assertEquals(null, $this->webHookListener->onPostDelete(new DataObjectEvent($testClass, [])));
 
         foreach ($webHooks as $key => $value) {
-            //$value->delete();
+            $value->delete();
         }
     }
  
@@ -81,7 +81,6 @@ class WebHookTest extends KernelTestCase {
 
         $webHooks = new \Pimcore\Model\DataObject\WebHook\Listing();
         $webHooks->setUnpublished(true);
-        $webHooks->setCondition("EntityType LIKE ?", [$entityType]);
         $webHooks = $webHooks->load();
 
         foreach ($webHooks as $webHook) {
