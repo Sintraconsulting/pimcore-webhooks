@@ -1,5 +1,6 @@
 # WebHookBundle Plugin
 [![Compile and Tests](https://github.com/Sintraconsulting/pimcore-webhooks/actions/workflows/php.yml/badge.svg)](https://github.com/Sintraconsulting/pimcore-webhooks/actions/workflows/php.yml)
+[![CodeFactor](https://www.codefactor.io/repository/github/sintraconsulting/pimcore-webhooks/badge)](https://www.codefactor.io/repository/github/sintraconsulting/pimcore-webhooks)
 
 This extention provide an easy way to send dataobjects to an external sites via
  json, whenever a pimcore event occurs on a specified class. This bundle installs the webHook class through which it is possible to define, from the UI, which dataObjects to listen for sending data to an external website, whenever a pimcore event occurs on the specified dataobject.
