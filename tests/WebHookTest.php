@@ -16,13 +16,13 @@ class WebHookTest extends KernelTestCase {
     private $testURL  = "https://enfen5kd4e3ot.x.pipedrea.net/"; //Set a valid url
     
     protected function setUp(): void {
-/*
+
         self::bootKernel();
         $container = self::$container;
 
         $this->webHookListener = new WebHookListener();
         $this->installTestClass();
-*/
+
     }
     
     public function testB() {
