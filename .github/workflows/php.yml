@@ -18,7 +18,7 @@ jobs:
       run: docker-compose up -d
     
     - name: Validate composer.json and composer.lock
-      run: docker-compose exec php composer validate --strict --no-check-version -T
+      run: docker-compose exec php composer validate -T --strict --no-check-version
       
     - name: Install dependencies
       run: docker-compose exec php composer install --prefer-dist --no-progress --ignore-platform-reqs
