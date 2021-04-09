@@ -18,10 +18,10 @@ jobs:
       run: docker-compose up -d
     
     - name: Validate composer.json and composer.lock
-      run: docker-compose exec php composer validate -T --strict --no-check-version
+      run: docker-compose exec php composer validate --strict --no-check-version
       
     - name: Install dependencies
-      run: docker-compose exec php composer install --prefer-dist --no-progress --ignore-platform-reqs
+      run: docker-compose exec -T php composer install --prefer-dist --no-progress --ignore-platform-reqs
       
     - name: PHPUnit Tests
       run: docker-compose exec php cd /var/www/html/src/WebHookBundle/tests && /var/www/html/vendor/bin/simple-phpunit --filter testB ./tests/WebHookTest.php
