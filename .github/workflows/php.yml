@@ -30,7 +30,7 @@ jobs:
       run: ls
       
     - name: PHPUnit Tests
-      run: docker-compose exec -T -w /var/www/html/pimcore-webhooks/pimcore-webhooks/tests php /var/www/html/vendor/bin/simple-phpunit --filter testB WebHookTest.php
+      run: docker-compose exec -T -w /var/www/html/work/pimcore-webhooks/pimcore-webhooks/tests php /var/www/html/vendor/bin/simple-phpunit --filter testB WebHookTest.php
       
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
