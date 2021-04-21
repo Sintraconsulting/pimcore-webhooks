@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "running test on cicd"
 
-cd /var/www/html/
+cd /var/www/html/src/WebHookBundle
 
 echo "working in html"
 
