@@ -15,9 +15,7 @@ composer install --prefer-dist --no-progress --ignore-platform-reqs
 
 vendor/bin/pimcore-install --admin-username pimcore --admin-password pimcore --mysql-username pimcore --mysql-password pimcore --mysql-database pimcore --mysql-host-socket db
 
-echo "pimcore installed"
 
-cd src/WebHookBundle/tests
-/var/www/html/vendor/bin/simple-phpunit --filter testB WebHookTest.php
+
 
 
