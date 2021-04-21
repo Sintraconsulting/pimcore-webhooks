@@ -12,7 +12,7 @@ composer
 
 composer validate --strict --no-check-version
       
-composer install --prefer-dist --no-progress --ignore-platform-reqs
+composer install --prefer-dist --no-progress --ignore-platform-reqs --working-dir /var/www/html
       
 vendor/bin/pimcore-install --admin-username pimcore --admin-password pimcore --mysql-username pimcore --mysql-password pimcore --mysql-database pimcore --mysql-host-socket db
 
