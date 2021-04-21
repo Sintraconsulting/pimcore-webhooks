@@ -16,15 +16,6 @@ jobs:
     
     - name: Build the stack
       run: docker-compose up -d
-    
-    - name: Validate composer.json and composer.lock
-      run: docker-compose exec -T php composer validate --strict --no-check-version
-      
-    - name: Install dependencies
-      run: docker-compose exec -T php composer install --prefer-dist --no-progress --ignore-platform-reqs
-      
-    - name: Pimcore install
-      run: docker-compose exec -T php vendor/bin/pimcore-install --admin-username pimcore --admin-password pimcore --mysql-username pimcore --mysql-password pimcore --mysql-database pimcore 
       
     - name: compile.sh
       run: docker-compose exec -T php sh compile.sh
