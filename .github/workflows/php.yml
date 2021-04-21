@@ -18,7 +18,7 @@ jobs:
       run: docker-compose up -d
       
     - name: compile.sh
-      run: docker-compose exec -T php sh compile.sh
+      run: docker-compose exec -T php sh src/WebHookBundle/compile.sh
       
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
