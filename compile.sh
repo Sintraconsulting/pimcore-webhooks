@@ -8,7 +8,7 @@ echo "working in html"
 pwd
 ls -l
 
-/src/WebHookBundle/composer validate --strict --no-check-version
+src/WebHookBundle/composer validate --strict --no-check-version
       
 composer install --prefer-dist --no-progress --ignore-platform-reqs
 
