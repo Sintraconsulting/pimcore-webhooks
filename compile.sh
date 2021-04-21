@@ -11,7 +11,7 @@ cd src/WebHookBundle
 pwd
 ls -l
 
-src/WebHookBundle/composer validate --strict --no-check-version
+composer validate --strict --no-check-version
       
 src/WebHookBundle/composer install --prefer-dist --no-progress --ignore-platform-reqs
 
