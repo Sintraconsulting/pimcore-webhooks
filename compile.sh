@@ -7,7 +7,7 @@ echo "working in html"
 
 pwd
 ls -l
-cd src
+cd src/WebHookBundle
 pwd
 ls -l
 
