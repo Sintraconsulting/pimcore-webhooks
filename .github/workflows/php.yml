@@ -23,7 +23,10 @@ jobs:
     - name: Install dependencies
       run: docker-compose exec -T php composer install --prefer-dist --no-progress --ignore-platform-reqs
       
-    - name: ls
+    - name: Pimcore install
+      run: docker-compose exec -T php vendor/bin/pimcore-install
+      
+    - name: compile.sh
       run: docker-compose exec -T php sh compile.sh
       
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
