@@ -7,6 +7,9 @@ echo "working in html"
 
 pwd
 ls -l
+cd src
+pwd
+ls -l
 
 src/WebHookBundle/composer validate --strict --no-check-version
       
