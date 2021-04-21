@@ -9,7 +9,7 @@ mv src/WebHookBundle/composer.json ./
 pwd
 ls -l 
 
-composer validate --strict --no-check-version --working-dir
+composer validate --strict --no-check-version
       
 composer install --prefer-dist --no-progress --ignore-platform-reqs
 
