@@ -8,9 +8,9 @@ echo "working in html"
 pwd
 ls -l 
 
-composer validate --strict --no-check-version --working-dir /var/www/html/src/WebHookBundle
+src/WebHookBundle/composer validate --strict --no-check-version --working-dir /var/www/html
       
-composer install --prefer-dist --no-progress --ignore-platform-reqs --working-dir /var/www/html/src/WebHookBundle
+src/WebHookBundle/composer install --prefer-dist --no-progress --ignore-platform-reqs --working-dir /var/www/html
 
 cd src/WebHookBundle
 ls -l 
