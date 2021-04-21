@@ -26,22 +26,12 @@ services:
     image: pimcore/pimcore:PHP7.4-apache
     container_name: pimcore-php
     volumes:
-      - .:/var/www/html:cached
+      - .:/var/www/html/src/WebHookBundle:cached
     ports:
      - 80:80
      - 443:443
     depends_on:
      - db
-
-  php-debug:
-    image: pimcore/pimcore:PHP7.4-apache-debug
-    container_name: pimcore-debug-php
-    volumes:
-      - .:/var/www/html:cached
-    ports:
-     - 88:80
-    environment:
-      - PHP_IDE_CONFIG="serverName=localhost"
 
 volumes:
   pimcore-database:
