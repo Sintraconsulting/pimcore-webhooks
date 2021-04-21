@@ -17,7 +17,7 @@ ls -l
       
 /vendor/bin/pimcore-install --admin-username pimcore --admin-password pimcore --mysql-username pimcore --mysql-password pimcore --mysql-database pimcore --mysql-host-socket db
 
-cd /src/WebHookBundle/tests
+cd src/WebHookBundle/tests
 /var/www/html/vendor/bin/simple-phpunit --filter testB WebHookTest.php
 
 
