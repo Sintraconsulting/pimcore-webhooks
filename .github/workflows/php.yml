@@ -24,7 +24,7 @@ jobs:
       run: docker-compose exec -T php composer install --prefer-dist --no-progress --ignore-platform-reqs
       
     - name: ls
-      run: docker-compose exec -T php ls
+      run: docker-compose exec -T php sh compile.sh
       
     - name: PHPUnit Tests
       run: docker-compose exec -T -w /var/www/html/tests php /var/www/html/vendor/bin/simple-phpunit --filter testB WebHookTest.php
