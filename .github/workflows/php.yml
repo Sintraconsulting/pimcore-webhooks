@@ -27,7 +27,7 @@ jobs:
       run: cd tests
       
     - name: ls
-      run: ls -l
+      run: docker-compose exec php pwd 
       
     - name: PHPUnit Tests
       run: docker-compose exec -T -w /var/www/html/sintra/pimcore-webhooks/tests php /home/runner/work/vendor/bin/simple-phpunit --filter testB WebHookTest.php
