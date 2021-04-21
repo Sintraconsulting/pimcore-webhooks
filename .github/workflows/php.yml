@@ -23,9 +23,6 @@ jobs:
     - name: Install dependencies
       run: docker-compose exec -T php composer install --prefer-dist --no-progress --ignore-platform-reqs
       
-    - name: cd
-      run: cd tests
-      
     - name: ls
       run: docker-compose exec -T php ls
       
