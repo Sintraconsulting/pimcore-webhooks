@@ -26,7 +26,7 @@ services:
     image: pimcore/pimcore:PHP7.4-apache
     container_name: pimcore-php
     volumes:
-      - .:/var/www/html/src/WebHookBundle:cached
+      - .:/var/www/html:cached
     ports:
      - 80:80
      - 443:443
