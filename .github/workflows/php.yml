@@ -20,8 +20,7 @@ jobs:
     - name: compile.sh
       run: docker-compose exec -T php sh src/WebHookBundle/compile.sh
       
-    - name: test
-      run: docker-compose exec -T -w /var/www/html/src/WebhookBundle/tests/ php /var/www/html/vendor/bin/simple-phpunit --filter testB WebHookTest.php
+   
 
       
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
