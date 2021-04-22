@@ -25,7 +25,7 @@ class WebHookTest extends KernelTestCase {
         $this->installTestClass();
     }
     
-    public function testA() {
+    public function testB() {
         $this->assertEquals(1,1);
     }
 

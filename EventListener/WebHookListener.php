@@ -103,8 +103,8 @@ class WebHookListener {
                 $jsonContent = $serializer->serialize($arrayData, 'json');
 
                 foreach ($webHooks as $webHook) {
-
-                    if(null == $url = $webHook->getURL()) {
+                    $url = $webHook->getURL();
+                    if(null == $url) {
                         continue;
                     }
 
