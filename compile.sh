@@ -24,7 +24,8 @@ vendor/bin/pimcore-install --admin-username pimcore --admin-password pimcore --m
 pwd
 ls -l 
 
-bin/console pimcore:bundle:list
+bin/console pimcore:bundle:enable WebHookBundle
+bin/console WebHookBundle:install
 
 cd src/WebHookBundle/
 
