@@ -23,6 +23,7 @@ class WebHookTest extends KernelTestCase {
         $logger = $container->get('Pimcore\Log\ApplicationLogger');
         $this->webHookListener = new WebHookListener($logger);
         $this->installTestClass();
+
     }
     
     public function testB() {

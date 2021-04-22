@@ -13,22 +13,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
+    - name: Build the stack
+      run: docker-compose up -d
+      
+    - name: compile.sh
+      run: docker-compose exec -T php sh src/WebHookBundle/compile.sh
+      
+   
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate --strict --no-check-version
-
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v2
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
-
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --ignore-platform-reqs
-
+      
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
