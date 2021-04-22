@@ -33,4 +33,4 @@ cd tests
 pwd
 ls -l
 
-/var/www/html/vendor/bin/simple-phpunit --filter testB WebHookTest.php
+/var/www/html/vendor/bin/phpunit --filter testB WebHookTest.php
