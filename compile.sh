@@ -19,7 +19,7 @@ vendor/bin/pimcore-install --admin-username pimcore --admin-password pimcore --m
 pwd
 ls -l 
 
-cd /var/www/html/src/WebhookBundle/tests/
+cd src/WebhookBundle/tests/
 
 
 pwd
