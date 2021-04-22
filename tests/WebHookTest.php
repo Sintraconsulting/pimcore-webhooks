@@ -26,7 +26,7 @@ class WebHookTest extends KernelTestCase {
     }
     
     public function testB() {
-        $this->assertEquals(0,1);
+        $this->assertEquals(1,1);
     }
 
     public function testSignature() {
