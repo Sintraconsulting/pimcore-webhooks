@@ -21,4 +21,8 @@ ls -l
 
 cd /var/www/html/src/WebhookBundle/tests/
 
+
+pwd
+ls -l
+
 /var/www/html/vendor/bin/simple-phpunit --filter testB WebHookTest.php
