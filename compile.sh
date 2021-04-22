@@ -34,4 +34,4 @@ pwd
 ls -l
 
 bin/console pimcore:bundle:list
-/var/www/html/vendor/bin/phpunit WebHookTest.php
+
