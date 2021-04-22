@@ -25,7 +25,7 @@ pwd
 ls -l 
 
 bin/console pimcore:bundle:enable WebHookBundle
-bin/console WebHookBundle:install
+bin/console pimcore:bundle:install WebHookBundle
 
 cd src/WebHookBundle/
 
