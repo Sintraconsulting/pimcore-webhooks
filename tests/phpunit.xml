@@ -16,7 +16,7 @@
     <php>
         <!-- adjust as needed -->
         <env name="SYMFONY_PHPUNIT_VERSION" value="7.4" />
-        <env name="PIMCORE_PROJECT_ROOT" value="/var/www/html/" />
+        <env name="PIMCORE_PROJECT_ROOT" value="/var/www/html/src/WedHookBundle" />
         <env name="KERNEL_DIR" value="app" />
         <env name="KERNEL_CLASS" value="AppKernel" />
         <env name="SYMFONY_DEPRECATIONS_HELPER" value="disabled" />
