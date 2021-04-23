@@ -24,6 +24,9 @@ vendor/bin/pimcore-install --admin-username pimcore --admin-password pimcore --m
 pwd
 ls -l 
 
+bin/console pimcore:bundle:enable WebHookBundle
+bin/console pimcore:bundle:install WebHookBundle
+
 cd src/WebHookBundle/
 
 composer validate --strict --no-check-version 
@@ -34,3 +37,4 @@ pwd
 ls -l
 
 /var/www/html/vendor/bin/phpunit WebHookTest.php
+
