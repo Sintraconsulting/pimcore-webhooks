@@ -15,7 +15,13 @@ class WebHookTest extends KernelTestCase {
 
     private $webHookListener;
     private $testURL  = "https://enfen5kd4e3ot.x.pipedream.net/"; //Set a valid url
-    
+    private $events = [
+        "Add" => ["preAdd", "postAdd", "postAddFailure"],
+        "Update" => ["preUpdate", "postUpdate", "postUpdateFailure"],
+        "Delete" => ["deleteInfo", "preDelete", "postDelete", "postDeleteFailure"],
+        "Copy" => ["postCopy", "postCsvItemExport"]
+    ];
+
     protected function setUp(): void {
 
         self::bootKernel();
@@ -35,7 +41,7 @@ class WebHookTest extends KernelTestCase {
         $webHooks = $this->createWebHooks();
 
         $testClass = new DataObject\TestClass(); 
-        $testClass->setKey(\Pimcore\Model\Element\Service::getValidKey('testClass', 'object'));
+        $testClass->setKey(\Pimcore\Model\Element\Service::getValidKey('TestClass', 'object'));
         $testClass->setParentId(1);
     
         $this->assertEquals(null, $this->webHookListener->onPreAdd(new DataObjectEvent($testClass, [])));
@@ -59,34 +65,32 @@ class WebHookTest extends KernelTestCase {
     }
  
     public function createWebHooks() {
-        $events = ["preAdd", "postAdd", "postAddFailure",
-                  "preUpdate", "postUpdate", "postUpdateFailure",
-                  "deleteInfo", "preDelete", "postDelete", "postDeleteFailure",
-                  "postCopy", "postCsvItemExport"];
+        
         $webHooks = array();
-        foreach ($events as $event) {
-            $webHooks[$event] = $this->createWebHook($event);
+        foreach ($this->events as $eventName => $eventTypes) {
+            $webHooks[$eventName] = $this->createWebHook($eventName, $eventTypes);
         }
         return $webHooks;
     }
     
-    public function createWebHook($listenedEvent, $entityType = "TestClass") {
+    public function createWebHook($eventName, $eventTypes, $entityType = "TestClass") {
 
         $webHooks = new \Pimcore\Model\DataObject\WebHook\Listing();
         $webHooks->setUnpublished(true);
         $webHooks = $webHooks->load();
 
         foreach ($webHooks as $webHook) {
-            if($webHook->getKey() == "webHook-".$listenedEvent) {
+            if($webHook->getKey() == "webHook-TestEvent-".$eventName) {
                 return $webHook;
             }
         }
         $webHook = new DataObject\WebHook(); 
-        $webHook->setKey(\Pimcore\Model\Element\Service::getValidKey("webHook-".$listenedEvent, 'object'));
+        $webHook->setKey(\Pimcore\Model\Element\Service::getValidKey("webHook-TestEvent-".$eventName, 'object'));
         $webHook->setParentId(1);
         $webHook->setEntityType(["$entityType"]);
         $webHook->setURL($this->testURL);
-        $webHook->setListenedEvent([$listenedEvent]);
+        $webHook->setListenedEvent($eventTypes);
+        $webHook->setPublished(true);
         $webHook->save();
         return $webHook;
     }
