@@ -16,7 +16,7 @@
     ]
   },
   "require": {
-    "pimcore/pimcore": "^6.8 || ^6.9"
+    "pimcore/pimcore": "^6.8 || ^10.0"
   },
     "extra": {
         "pimcore": {
