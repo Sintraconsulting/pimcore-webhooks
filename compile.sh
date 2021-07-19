@@ -5,7 +5,7 @@ cd /var/www/html/
 
 echo "working in html"
 
-COMPOSER_MEMORY_LIMIT=-1 composer create-project pimcore/skeleton:^6.9 tmp
+COMPOSER_MEMORY_LIMIT=-1 composer create-project pimcore/skeleton:^6 tmp
 mv tmp/.[!.]* .
 mv tmp/* .
 rmdir tmp
