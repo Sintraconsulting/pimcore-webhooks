@@ -5,18 +5,29 @@ namespace WebHookBundle\Installer;
 use Doctrine\DBAL\Migrations\AbortMigrationException;
 use Doctrine\DBAL\Migrations\Version;
 use Doctrine\DBAL\Schema\Schema;
+use Pimcore\Extension\Bundle\Installer\AbstractInstaller;
 use Pimcore\Extension\Bundle\Installer\MigrationInstaller;
 use Pimcore\Model\DataObject\ClassDefinition;
 use Pimcore\Model\DataObject\ClassDefinition\Service;
 
-class WebHookBundleInstaller extends MigrationInstaller
+use Symfony\Component\Console\Output\BufferedOutput;
+use Symfony\Component\Console\Output\Output;
+use Symfony\Component\Console\Output\OutputInterface;
+use Pimcore\Db\ConnectionInterface;
+use Pimcore\Migrations\MigrationManager;
+use Pimcore\Model\DataObject\Fieldcollection;
+use Pimcore\Model\DataObject\Objectbrick;
+use Symfony\Component\Finder\Finder;
+use Pimcore\Log\ApplicationLogger;
+
+class WebHookBundleInstaller extends AbstractInstaller
 {
-    public function migrateInstall(Schema $schema, Version $version) {
+    public function install() {
         $this->installClasses();
         $this->installKeys();
     }
 
-    public function migrateUninstall(Schema $schema, Version $version) {
+    public function uninstall() {
     
     }
 
@@ -29,11 +40,11 @@ class WebHookBundleInstaller extends MigrationInstaller
             $settingApiKey->setData(md5(random_bytes(300)));
             $settingApiKey->save();
         } else {
-            $this->outputWriter->write(sprintf('\nFound WebHookApi-key\n'));
+            $this->output->write(sprintf('\nFound WebHookApi-key\n'));
         }
 
         if(\Pimcore\Model\WebsiteSetting::getByName('WebHookPublicKey') && \Pimcore\Model\WebsiteSetting::getByName('WebHookPrivateKey')){
-            $this->outputWriter->write(sprintf('\nFound public and private key\n'));
+            $this->output->write(sprintf('\nFound public and private key\n'));
         } else {
             $new_key_pair = openssl_pkey_new(array(
                 "private_key_bits" => 2048,
@@ -78,9 +89,10 @@ class WebHookBundleInstaller extends MigrationInstaller
             $path = realpath($path);
 
             if (false === $path || !is_file($path)) {
-                throw new AbortMigrationException(sprintf(
+                $this->output->write(sprintf(
                     'Class "%s" was expected in "%s" but file does not exist', $className, $path
                 ));
+                continue;
             }
             $classes[$className] = $path;
         }
@@ -89,7 +101,7 @@ class WebHookBundleInstaller extends MigrationInstaller
             $class = ClassDefinition::getByName($key);
 
             if ($class) {
-                $this->outputWriter->write(sprintf('     <comment>WARNING:</comment> Skipping class "%s" as it already exists', $key));
+                $this->output->write(sprintf('     <comment>WARNING:</comment> Skipping class "%s" as it already exists', $key));
                 continue;
             }
 
@@ -102,11 +114,22 @@ class WebHookBundleInstaller extends MigrationInstaller
             $success = Service::importClassDefinitionFromJson($class, $data, false, true);
 
             if (!$success) {
-                throw new AbortMigrationException(sprintf(
+                $this->output->write(sprintf(
                     'Failed to create class "%s"',
                     $key
                 ));
+                continue;
             }
         }
+    }
+    
+    public function canBeUninstalled()
+    {
+        return true; // this can be customized
+    }
+
+    public function canBeInstalled()
+    {
+        return true; // this can be customized
     }
 }
