@@ -5,7 +5,7 @@ namespace WebHookBundle\Utils;
 use Pimcore\Model\DataObject;
 use Pimcore\Model\DataObject\ClassDefinition\Data\ManyToManyObjectRelation;
 use Pimcore\Model\DataObject\ClassDefinition\Data\Relations\AbstractRelations;
-use Pimcore\Model\DataObject\ClassDefinition\Data\ReverseManyToManyObjectRelation;
+use Pimcore\Model\DataObject\ClassDefinition\Data\ReverseObjectRelation;
 
 class ExportDataObject {
 
@@ -37,11 +37,11 @@ class ExportDataObject {
 
         if (
             (!$objectFromVersion && $fielddefinition instanceof AbstractRelations)
-            || $fielddefinition instanceof ReverseManyToManyObjectRelation
+            || $fielddefinition instanceof ReverseObjectRelation
         ) {
             $refId = null;
 
-            if ($fielddefinition instanceof ReverseManyToManyObjectRelation) {
+            if ($fielddefinition instanceof ReverseObjectRelation) {
                 $refKey = $fielddefinition->getOwnerFieldName();
                 $refClass = DataObject\ClassDefinition::getByName($fielddefinition->getOwnerClassName());
                 if ($refClass) {
@@ -51,7 +51,7 @@ class ExportDataObject {
                 $refKey = $key;
             }
 
-            $relations = $object->getRelationData($refKey, !$fielddefinition instanceof ReverseManyToManyObjectRelation, $refId);
+            $relations = $object->getRelationData($refKey, !$fielddefinition instanceof ReverseObjectRelation, $refId);
 
             if (empty($relations) && !empty($parent)) {
                 $this->getDataForField($parent, $key, $fielddefinition, $objectFromVersion, $level + 1);

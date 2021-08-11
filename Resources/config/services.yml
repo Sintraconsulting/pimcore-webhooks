@@ -6,8 +6,7 @@ services:
 
     WebHookBundle\Installer\WebHookBundleInstaller:
         public: true
-        arguments:    
-            $bundle: "@=service('kernel').getBundle('WebHookBundle')"
+        
 
     WebHookBundle\EventListener\WebHookListener:
         public: true
