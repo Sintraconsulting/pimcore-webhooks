@@ -25,8 +25,7 @@ class WebHookBundle extends AbstractPimcoreBundle {
      * {@inheritdoc}
      */
 /*
-    protected function getComposerPackageName(): string
-    {
+    protected function getComposerPackageName(): string {
         return self::PACKAGE_NAME;
     }
 */
@@ -34,8 +33,7 @@ class WebHookBundle extends AbstractPimcoreBundle {
      * @return string
      */
 /*
-    protected static function getPimcoreVersion()
-    {
+    protected static function getPimcoreVersion() {
         return preg_replace('/[^0-9.]/', '', \Pimcore\Version::getVersion());
     }
 */
