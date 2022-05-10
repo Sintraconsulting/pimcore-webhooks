@@ -156,7 +156,9 @@ class WebHookListener {
                             $messaggeData['title'] = "WebHook Error";
                             $messaggeData['message'] ="Web Hook request error:\nEvent: ".$eventName." Class: ".$entityType."\nhost: ".$webHook->getURL()."\nResponse: ".$response->getStatusCode();
 
-                            $this->sendNotification($messaggeData, $dataObject->getUserModification());
+                            if ($response->getStatusCode() != 200) {
+                                $this->sendNotification($messaggeData, $dataObject->getUserModification());
+                            }
 
                             if($response->getStatusCode() >=400 && $response->getStatusCode() <= 599) {
                                 $this->logger->error($messaggeData['message'], ['relatedObject' => $dataObject->getId()]);
