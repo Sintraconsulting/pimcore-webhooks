@@ -142,7 +142,8 @@ class WebHookListener {
 
                         $client = HttpClient::create();
                         $method = 'POST';
-                        $headers = ["x-pimcore-listen-event" => $eventName,
+                        $headers = ['Content-Type' => 'application/json',
+                                    "x-pimcore-listen-event" => $eventName,
                                     "x-pimcore-object" => $entityType,
                                     "x-pimcore-apikey" => $apiKey,
                                     "x-pimcore-signature" => $signature,
