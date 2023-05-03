@@ -19,6 +19,7 @@ class OptionsProvider implements MultiSelectOptionsProviderInterface
         $classesList = new ClassDefinition\Listing();
         $classesList->setOrderKey('name');
         $classesList->setOrder('asc');
+        $classesList->setCondition('name NOT LIKE ?', $context['class']->getName() . '%');
         
         $classes = $classesList->load();
         $result = array();
